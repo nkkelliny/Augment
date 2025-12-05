@@ -1,0 +1,55 @@
+{
+  "name": "augment",
+  "version": "1.0.0",
+  "description": "Mini IDE with Monaco, file explorer, tabs, and Ollama AI assistant",
+  "main": "main.js",
+  "scripts": {
+    "icons": "node scripts/generate-icons.js",
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.augment.app",
+    "productName": "Augment",
+    "directories": {
+      "buildResources": "build/icons",
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "renderer.js",
+      "style.css",
+      "assets/**/*",
+      "build/icons/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "build/icons/icon.icns",
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "icon": "build/icons",
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development"
+    }
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^25.0.0",
+    "icon-gen": "^5.0.0"
+  }
+}

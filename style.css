@@ -1,0 +1,447 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    color: #d4d4d4;
+}
+
+/* Top Bar */
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e1e1e;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+}
+
+#top-bar .left button {
+    margin-right: 6px;
+}
+
+#top-bar button {
+    padding: 3px 10px;
+    border: none;
+    border-radius: 3px;
+    background: #3a3d41;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#top-bar button:hover {
+    background: #4b4f54;
+}
+
+#file-label {
+    margin-left: 8px;
+    opacity: 0.8;
+}
+
+#language-select {
+    padding: 3px 6px;
+    border-radius: 3px;
+    border: 1px solid #555;
+    background: #252526;
+    color: #fff;
+}
+
+/* Main Layout */
+
+#main-container {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+/* Sidebar / Explorer */
+
+#sidebar {
+    width: 250px;
+    background: #252526;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar-header {
+    padding: 6px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #cccccc;
+    border-bottom: 1px solid #333;
+}
+
+#folder-actions {
+    margin-top: 6px;
+}
+
+#folder-actions button {
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: none;
+    background: #3a3d41;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#folder-actions button:hover {
+    background: #4b4f54;
+}
+
+/* Highlight selected directory in tree */
+.file-node.selected {
+    background: #37373d;
+}
+
+
+#folder-info {
+    padding: 6px 10px;
+    border-bottom: 1px solid #333;
+    font-size: 12px;
+}
+
+#folder-label {
+    color: #cccccc;
+    word-break: break-all;
+}
+
+#file-tree {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 12px;
+    padding: 4px 4px 8px 4px;
+}
+
+.file-node {
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.file-node:hover {
+    background: #2a2d2e;
+}
+
+.file-node span.chevron {
+    display: inline-block;
+    width: 12px;
+    text-align: center;
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+.file-node span.icon {
+    margin-right: 4px;
+    opacity: 0.8;
+}
+
+.file-node .name {
+    flex: 1;
+}
+
+.file-node.directory {
+    font-weight: 500;
+}
+
+.file-node.file {
+    font-weight: 400;
+}
+
+/* Tree nested */
+
+.tree-children {
+    padding-left: 14px;
+}
+
+/* Center Column / Tabs + Editor */
+
+#center-column {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #1e1e1e;
+}
+
+#tab-bar {
+    height: 30px;
+    display: flex;
+    align-items: flex-end;
+    background: #252526;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-right: 1px solid #333;
+    background: #2d2d2d;
+    color: #ccc;
+}
+
+.tab.active {
+    background: #1e1e1e;
+    color: #fff;
+    border-bottom: 2px solid #007acc;
+}
+
+.tab .dirty-indicator {
+    color: #f48771;
+    margin-right: 4px;
+}
+
+.tab .close-tab {
+    margin-left: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.tab .close-tab:hover {
+    opacity: 1;
+}
+
+#editor-container {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+}
+
+/* AI Panel */
+
+#ai-panel {
+    flex: 1.3;
+    border-left: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    background: #252526;
+    min-width: 330px;
+}
+
+#ai-header {
+    padding: 8px 10px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ai-header h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+#ai-header small {
+    display: block;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.ai-model-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+}
+
+.ai-model-row label {
+    opacity: 0.9;
+}
+
+#model-input {
+    width: 110px;
+    background: #1e1e1e;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+#ai-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.ai-message {
+    margin-bottom: 10px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.ai-message.user {
+    background: #0e639c;
+    align-self: flex-end;
+}
+
+.ai-message.assistant {
+    background: #1e1e1e;
+    border: 1px solid #3c3c3c;
+}
+
+.ai-message.system {
+    background: #643b9f;
+}
+
+/* AI Tools */
+
+#ai-tools {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 6px 8px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#ai-tools button {
+    padding: 4px 8px;
+    border-radius: 3px;
+    border: none;
+    background: #3a3d41;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#ai-tools button:hover {
+    background: #4b4f54;
+}
+
+/* AI input area */
+
+#ai-input-area {
+    border-top: 1px solid #333;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+#ai-input {
+    width: 100%;
+    resize: vertical;
+    min-height: 60px;
+    max-height: 150px;
+    background: #1e1e1e;
+    border: 1px solid #555;
+    border-radius: 3px;
+    color: #fff;
+    padding: 6px;
+    font-size: 13px;
+}
+
+.ai-buttons {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.ai-buttons button {
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: none;
+    background: #0e639c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.ai-buttons button:hover {
+    background: #1177bb;
+}
+
+/* Existing from before (ok to keep) */
+#folder-actions {
+    margin-top: 6px;
+}
+
+#folder-actions > button {
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: none;
+    background: #3a3d41;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#folder-actions > button:hover {
+    background: #4b4f54;
+}
+
+/* New Folder form */
+#new-folder-form {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#new-folder-form input {
+    padding: 3px 6px;
+    border-radius: 3px;
+    border: 1px solid #555;
+    background: #1e1e1e;
+    color: #fff;
+    font-size: 12px;
+}
+
+#new-folder-form button {
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: none;
+    background: #0e639c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#new-folder-form button:hover {
+    background: #1177bb;
+}
+
+/* Generic hidden utility */
+.hidden {
+    display: none;
+}
+
+/* Highlight selected directory in tree (if not already added) */
+.file-node.selected {
+    background: #37373d;
+}
+
+#app-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+}
+
+#app-header .logo {
+  width: 20px;
+  height: 20px;
+}

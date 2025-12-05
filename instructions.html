@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Augment – Instructions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #020617;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #f9fafb;
+      margin-top: 1.2em;
+      margin-bottom: 0.4em;
+    }
+    p {
+      margin: 0.4em 0;
+    }
+    ol, ul {
+      padding-left: 1.2em;
+    }
+    code {
+      background: #0f172a;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #020617;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+      margin: 0.6em 0;
+    }
+    .section {
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #1f2937;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-left: 8px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1e293b;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Augment – How to Use the Application <span class="badge">User Guide</span></h1>
+  <p>
+    Augment is an AI-augmented code editor and mini-IDE. It combines a file explorer, tabbed Monaco editor, and a local AI
+    assistant powered by <strong>Ollama</strong>.
+  </p>
+
+  <div class="section">
+    <h2>1. System Requirements</h2>
+    <ul>
+      <li><strong>Node.js &amp; npm</strong> installed.</li>
+      <li><strong>Ollama</strong> installed and running locally.</li>
+      <li>A code project folder with source files (JavaScript, TypeScript, C#, Python, HTML, CSS, etc.).</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>2. First-Time Setup</h2>
+
+    <h3>2.1 Install dependencies</h3>
+    <pre><code>npm install
+npm run icons</code></pre>
+
+    <h3>2.2 Start Ollama</h3>
+    <p>Open a terminal and run:</p>
+    <pre><code>ollama pull llama3.2
+ollama serve</code></pre>
+    <p>
+      You can use any local model you like; just make sure the name matches the <code>Model</code> field in the AI panel
+      inside Augment.
+    </p>
+
+    <h3>2.3 Start Augment</h3>
+    <pre><code>npm start</code></pre>
+    <p>This launches the Electron app with the Augment interface.</p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>3. Understanding the Interface</h2>
+
+    <h3>3.1 Top Bar</h3>
+    <ul>
+      <li><strong>Open File</strong> – Open a single file into a new tab.</li>
+      <li><strong>Open Folder</strong> – Select a folder and populate the left explorer tree.</li>
+      <li><strong>Save / Save As</strong> – Save the currently active tab’s file.</li>
+      <li><strong>New File</strong> – Create a new untitled tab in the editor.</li>
+      <li><strong>Language Dropdown</strong> – Override the syntax highlighting language for the current tab (or let it stay on <code>Auto Detect</code> to match file extension).</li>
+      <li><strong>Help → Documentation / Instructions</strong> (in the app menu) – Opens the documentation and this guide in your default web browser.</li>
+    </ul>
+
+    <h3>3.2 Left Sidebar – File Explorer</h3>
+    <ul>
+      <li>Shows the folder you opened with <strong>Open Folder</strong>.</li>
+      <li>Directories are expandable/collapsible.</li>
+      <li>Files open into tabs when you click them.</li>
+      <li>Clicking a folder will:
+        <ul>
+          <li>Select that folder as the target for new folders.</li>
+          <li>Toggle its collapsed/expanded state.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3.3 Center – Tabs & Monaco Editor</h3>
+    <ul>
+      <li>Each open file appears as a tab in the tab bar.</li>
+      <li>An orange dot (●) in the tab indicates unsaved changes (dirty state).</li>
+      <li>The main editor uses Monaco (similar to VS Code) with:
+        <ul>
+          <li>Syntax highlighting</li>
+          <li>Line numbers</li>
+          <li>Minimap (small preview) on the right</li>
+          <li>Mouse selection and standard keyboard shortcuts (copy/paste, undo/redo, etc.)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>3.4 Right Panel – AI Assistant</h3>
+    <ul>
+      <li><strong>Model</strong> input – Name of the Ollama model to use (e.g. <code>llama3.2</code>).</li>
+      <li>Scrollable message history showing user prompts and AI responses.</li>
+      <li>Buttons:
+        <ul>
+          <li><strong>Ask AI</strong> – Ask a general programming question.</li>
+          <li><strong>Ask About Current File</strong> – Ask AI to analyze the full content of the active editor tab.</li>
+          <li><strong>Explain Selection</strong> – Explain the currently highlighted code.</li>
+          <li><strong>Refactor Selection</strong> – Suggest a cleaner / more maintainable version of the selected code.</li>
+          <li><strong>Generate Tests</strong> – Generate unit test ideas/code for the selected function or block.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>4. Working With Files and Folders</h2>
+
+    <h3>4.1 Opening a Folder</h3>
+    <ol>
+      <li>Click <strong>Open Folder</strong> in the top bar.</li>
+      <li>Select the root directory of your project.</li>
+      <li>The left sidebar will populate with a folder tree.</li>
+    </ol>
+
+    <h3>4.2 Opening Files</h3>
+    <ol>
+      <li>In the sidebar, click a file.</li>
+      <li>A new tab appears in the center, and the file is loaded into Monaco.</li>
+      <li>Click other files to open more tabs.</li>
+    </ol>
+
+    <h3>4.3 Creating New Files</h3>
+    <ol>
+      <li>Click <strong>New File</strong> in the top bar.</li>
+      <li>An untitled tab is created (e.g. <code>Untitled-1</code>).</li>
+      <li>Type your code, then click <strong>Save</strong> or <strong>Save As</strong> to write it to disk.</li>
+    </ol>
+
+    <h3>4.4 Saving Changes</h3>
+    <ul>
+      <li><strong>Save</strong> – Saves to the existing file path (if the tab already has one).</li>
+      <li><strong>Save As</strong> – Prompts for a location and file name, then saves the content.</li>
+      <li>The dirty indicator (●) clears once the file is successfully saved.</li>
+    </ul>
+
+    <h3>4.5 Creating New Folders</h3>
+    <ol>
+      <li>Open a folder via <strong>Open Folder</strong>.</li>
+      <li>In the sidebar, click the folder where you want the new folder to be created (it becomes the selected directory).</li>
+      <li>Use the <strong>New Folder</strong> control in the sidebar (if you’ve added that feature) to input a folder name.</li>
+      <li>The folder is created on disk and the tree refreshes.</li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>5. Using the AI Assistant</h2>
+
+    <h3>5.1 Basic Chat</h3>
+    <ol>
+      <li>Ensure Ollama is running.</li>
+      <li>Check the <strong>Model</strong> field in the AI panel (e.g. <code>llama3.2</code>).</li>
+      <li>Type your question in the AI text area.</li>
+      <li>Click <strong>Ask AI</strong>.</li>
+      <li>The request is sent to Ollama, and the response appears in the AI panel.</li>
+    </ol>
+
+    <h3>5.2 Ask About the Current File</h3>
+    <ol>
+      <li>Open a file in the editor.</li>
+      <li>Optionally, describe what you want (e.g. “Review this file for obvious bugs and improvements”).</li>
+      <li>Click <strong>Ask About Current File</strong>.</li>
+      <li>Augment sends both your question and the full file content to the model for context-aware analysis.</li>
+    </ol>
+
+    <h3>5.3 Explain / Refactor / Generate Tests (Selection-based Tools)</h3>
+    <ol>
+      <li>Select the relevant code in the Monaco editor (function, class, or block).</li>
+      <li>Click:
+        <ul>
+          <li><strong>Explain Selection</strong> – to get a human-readable explanation.</li>
+          <li><strong>Refactor Selection</strong> – to receive a suggested improvement.</li>
+          <li><strong>Generate Tests</strong> – to get sample unit test code or scenarios.</li>
+        </ul>
+      </li>
+      <li>Results are shown in the AI panel. You can manually copy/paste suggested code back into the editor.</li>
+    </ol>
+
+    <h3>5.4 Changing the Model</h3>
+    <ul>
+      <li>If you have multiple models in Ollama (e.g. <code>llama3.2</code>, <code>codellama</code>, etc.), type the desired model name into the <strong>Model</strong> input.</li>
+      <li>All subsequent AI requests use that model.</li>
+    </ul>
+
+    <h3>5.5 Error Handling</h3>
+    <ul>
+      <li>If the AI panel shows an error:
+        <ul>
+          <li>Verify that Ollama is running (<code>ollama serve</code> still active).</li>
+          <li>Ensure the model name is correct and the model is pulled.</li>
+          <li>Check the console in the terminal where you ran <code>npm start</code> for details.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>6. Building Augment (Optional)</h2>
+    <p>If you have <code>electron-builder</code> configured, you can create distributable builds:</p>
+    <pre><code>npm run build</code></pre>
+    <p>This typically generates platform-specific installers or app bundles in a <code>dist/</code> directory.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Tips & Best Practices</h2>
+    <ul>
+      <li>Use AI for guidance and suggestions, but always review generated code and tests.</li>
+      <li>Keep your Ollama models updated for best quality and performance.</li>
+      <li>Consider separate project folders for different languages/frameworks to keep the explorer organized.</li>
+    </ul>
+  </div>
+</body>
+</html>
