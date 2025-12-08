@@ -3,7 +3,7 @@
 Augment
 =======
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Version](https://img.shields.io/badge/version-1.0.0-orange.svg) ![Platform](https://img.shields.io/badge/platform-Electron-47848F.svg) ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Version](https://img.shields.io/badge/version-1.0.0-orange.svg) ![Platform](https://img.shields.io/badge/platform-Electron-47848F.svg)
 
 Augment is a lightweight, AI-assisted IDE built using **Electron**, **Monaco Editor**, a file explorer with tabs, and a powerful local AI assistant powered by **Ollama**. It is designed to be fast, minimal, and fully offline-capable.
 
@@ -218,13 +218,6 @@ Notes
 *   Augment runs entirely locally and requires no internet access.
 *   All AI processing happens through the local Ollama engine.
 *   Ideal for offline or privacy-focused development workflows.
-
-* * *
-
-License
--------
-
-This project is intended for personal, educational, and internal developer use. Adapt freely.
 
 * * *
 
